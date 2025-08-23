@@ -287,8 +287,8 @@ class FlxEcho extends FlxBasic
 		{
 			if (temp_stay != null) temp_stay(a, b, c);
 			if (options.separate == null || options.separate) for (col in c) {
-				set_touching(get_object(a), [CEILING, WALL, FLOOR] [col.normal.dot(Vector2.up).round() + 1]);
-				set_touching(get_object(b), [CEILING, WALL, FLOOR] [col.normal.negate().dot(Vector2.up).round() + 1]);
+				set_touching(get_object(a), #if (flixel >= version("6.0.0")) [CEILING.toInt(), WALL.toInt(), FLOOR.toInt()] #else [CEILING, WALL, FLOOR] #end [col.normal.dot(Vector2.up).round() + 1]);
+				set_touching(get_object(b), #if (flixel >= version("6.0.0")) [CEILING.toInt(), WALL.toInt(), FLOOR.toInt()] #else [CEILING, WALL, FLOOR] #end [col.normal.negate().dot(Vector2.up).round() + 1]);
 			} 
 		}
 		#if ARCADE_PHYSICS
