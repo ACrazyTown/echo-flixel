@@ -82,7 +82,11 @@ class FlxEcho extends FlxBasic
 
 		if (instance == null)
 		{
+			#if (flixel >= "5.6.0")
+			FlxG.plugins.addPlugin(instance = new FlxEcho(options));
+			#else
 			FlxG.plugins.add(instance = new FlxEcho(options));
+			#end
 			FlxG.signals.preStateSwitch.add(on_state_switch);
 		}
 
@@ -320,7 +324,11 @@ class FlxEcho extends FlxBasic
 
 	static inline function set_touching(object:FlxObject, touching:Int)
 	{
+		#if (flixel >= version("6.0.0"))
+		if (object.touching.toInt() & touching == 0) object.touching = FlxDirectionFlags.fromInt(object.touching.toInt() | touching);
+		#else
 		if (object.touching & touching == 0) object.touching = object.touching | touching;
+		#end
 	}
 
 	static function square_normal(normal:Vector2)
