@@ -1,6 +1,5 @@
 package echo;
 
-import echo.util.verlet.Verlet;
 import echo.Body;
 import echo.Echo;
 import echo.World;
@@ -8,6 +7,7 @@ import echo.data.Options.BodyOptions;
 import echo.data.Options.ListenerOptions;
 import echo.data.Options.WorldOptions;
 import echo.util.AABB;
+import echo.util.verlet.Verlet;
 import flixel.FlxBasic;
 import flixel.FlxG;
 import flixel.FlxObject.*;
@@ -16,7 +16,6 @@ import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import flixel.util.FlxColor;
 import flixel.util.FlxDirectionFlags;
-
 using Math;
 using Std;
 using echo.math.Vector2;
@@ -422,8 +421,7 @@ class FlxEcho extends FlxBasic
 		if (!draw_debug || debug_drawer == null || world == null) return;
 
 		// TODO - draw with full FlxG.cameras list
-		debug_drawer.camera.set_from_min_max(FlxG.camera.scroll.x, FlxG.camera.scroll.y, FlxG.camera.scroll.x + FlxG.camera.width,
-			FlxG.camera.scroll.y + FlxG.camera.height);
+		debug_drawer.camera.set_from_min_max(FlxG.camera.viewX, FlxG.camera.viewY, FlxG.camera.viewRight, FlxG.camera.viewBottom);
 
 		debug_drawer.draw(world, false);
 		debug_drawer.draw_verlet(verlet);
