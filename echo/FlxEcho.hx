@@ -112,6 +112,7 @@ class FlxEcho extends FlxBasic
 		if (old_body != null)
 		{
 			old_body.dispose();
+			old_body.object = null;
 		}
 
 		if (options == null) options = {};
